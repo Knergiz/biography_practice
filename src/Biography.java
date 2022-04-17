@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Biography {
@@ -34,9 +35,9 @@ public class Biography {
          */
 
         Author author = new Author(null, null, null, false, 0);
-        Book book1 = new Book(null, null, 0);
-        Book book2 = new Book(null, null, 0);
-        Book book3 = new Book(null, null, 0);
+        ArrayList<Book> books = new ArrayList<>();
+
+
 
 
         Scanner input = new Scanner(System.in);
@@ -57,29 +58,26 @@ public class Biography {
             System.out.println("Would you like to enter info about a book from that author?");
             String response = input.next();
             if (response.toLowerCase().startsWith("y")){
-                Book book = new Book(null, null, 0);
+
                 Book.addBooks();
                 System.out.println("What is the name of the book?");
                 input.nextLine();
-                book.name = input.nextLine();
+                String name = input.nextLine();
                 System.out.println("What is the genre of the book?");
-                book.genre = input.nextLine();
+                String genre = input.nextLine();
                 System.out.println("How many pages does the book have?");
-                book.totalPage = input.nextInt();
-                if (book1.name == null){
-                    book1 = book;
-                }else if (book2.name == null){
-                    book2 = book;
-                }else book3 = book;
-
-
+                int pages = input.nextInt();
+                Book book = new Book(name, genre, pages);
+                books.add(book);
             }
         }while (Book.totalAmountOfBooks < 3);
 
         System.out.println(author);
-        System.out.println(book1);
-        System.out.println(book2);
-        System.out.println(book3);
+        for (Book element : books){
+            System.out.println(element);
+        }
+
+
 
 
 
